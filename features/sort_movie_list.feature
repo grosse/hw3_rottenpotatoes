@@ -15,15 +15,26 @@ Background: movies have been added to database
   | Chocolat                | PG-13  | 5-Jan-2001   |
   | Amelie                  | R      | 25-Apr-2001  |
   | 2001: A Space Odyssey   | G      | 6-Apr-1968   |
-  | The Incredibles         | PG     | 5-Nov-2004   |
+  | The Incredibles         | PG     | 5- Nov-2004   |
   | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
   | Chicken Run             | G      | 21-Jun-2000  |
 
   And I am on the RottenPotatoes home page
 
 Scenario: sort movies alphabetically
-  # your steps here
+ When I check the following ratings: "ratings_G", "ratings_PG", "ratings_R", "ratings_PG-13", "ratings_NC-17"
+ Then I press "ratings_submit"
+ When I follow "title_header" 
+ Then I should see "Amelie" before "Chicken Run"
+ Then I should see "Chicken Run" before "The Incredibles"
+ Then I should see "The Incredibles" before "When Harry Met Sally"
+ Then I should see "Aladdin" before "Raiders of the Lost Ark"
 
 Scenario: sort movies in increasing order of release date
-  # your steps here
+ When I check the following ratings: "ratings_G", "ratings_PG", "ratings_R", "ratings_PG-13", "ratings_NC-17"
+ Then I press "ratings_submit"
+ When I follow "release_date_header" 
+ Then I should see "Raiders of the Lost Ark" before "Aladdin"
+ Then I should see "Chicken Run" before "Amelie"
+ Then I should see "Chicken Run" before "The Incredibles"
 
